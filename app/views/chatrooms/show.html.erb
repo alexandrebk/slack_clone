@@ -1,0 +1,13 @@
+<h1 class="text-center">#<%= @chatroom.name.upcase %></h1>
+
+
+<div id="messages"
+     data-chatroom-id="<%= @chatroom.id %>">
+  <% @messages.each do |message| %>
+    <%= render "chatrooms/message", message: message %>
+  <% end %>
+</div>
+
+<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+<% end %>
